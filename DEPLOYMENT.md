@@ -79,9 +79,11 @@ This guide will walk you through deploying the DoorDash Calculator to Azure App 
 2. **Configure Startup Command** (for Linux)
    - In **Configuration** → **General settings**
    - Add a startup command (if deploying to Linux):
-     ```
+
+     ***
      pm2 serve /home/site/wwwroot --no-daemon --spa
-     ```
+     ***
+
    - Or use Azure's built-in static site hosting (recommended for static sites)
 
 3. **Enable Static Website Hosting** (Recommended)
@@ -109,20 +111,24 @@ This guide will walk you through deploying the DoorDash Calculator to Azure App 
 ## Troubleshooting
 
 ### Build Fails
+
 - Check the GitHub Actions logs for specific errors
 - Ensure `package.json` has all required dependencies
 - Verify Node.js version matches in workflow and Azure settings
 
 ### App Not Loading
+
 - Check Azure App Service logs: **Monitoring** → **Log stream**
 - Verify `web.config` is in the `dist/` folder after build
 - Ensure the correct files are in the `dist/` directory
 
 ### 404 Errors on Refresh
+
 - Verify `web.config` is present in the `public/` folder (it will be copied to `dist/`)
 - Check that IIS URL Rewrite module is enabled (for Windows App Service)
 
 ### Deployment Credentials Error
+
 - Re-download the publish profile from Azure Portal
 - Update the `AZURE_PUBLISH_PROFILE` secret in GitHub
 
@@ -131,12 +137,14 @@ This guide will walk you through deploying the DoorDash Calculator to Azure App 
 If you prefer to deploy manually without GitHub Actions:
 
 1. **Build locally**
+
    ```bash
    npm install
    npm run build
    ```
 
 2. **Deploy using Azure CLI**
+
    ```bash
    az login
    az webapp deploy --resource-group <resource-group-name> --name <app-name> --src-path ./dist
@@ -159,4 +167,3 @@ For a static React app, the Free tier may be sufficient for testing, but conside
 - [Azure App Service Documentation](https://docs.microsoft.com/azure/app-service/)
 - [GitHub Actions for Azure](https://github.com/azure/actions)
 - [Vite Deployment Guide](https://vitejs.dev/guide/static-deploy.html)
-
