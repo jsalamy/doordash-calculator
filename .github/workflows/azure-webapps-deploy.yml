@@ -13,7 +13,7 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +29,20 @@ jobs:
 
       - name: Build application
         run: npm run build
+
+      - name: Verify build output
+        run: |
+          echo "Verifying build output..."
+          ls -la ./dist
+          if [ ! -f "./dist/web.config" ]; then
+            echo "ERROR: web.config not found in dist folder!"
+            exit 1
+          fi
+          if [ ! -f "./dist/index.html" ]; then
+            echo "ERROR: index.html not found in dist folder!"
+            exit 1
+          fi
+          echo "Build output verified successfully"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
