@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 968px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 15px;
+  }
+
+  .app-header {
+    margin-bottom: 20px;
+  }
+
+  .app-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+  }
+
+  .app-header p {
+    font-size: 0.95rem;
+  }
+
+  .content-wrapper {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+.car-profile,
+.calculator,
+.results {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.car-profile h2,
+.calculator h2,
+.results h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.profile-form,
+.calculator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.form-group input[type="number"],
+.form-group select {
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+@media (max-width: 480px) {
+  .form-group input[type="number"],
+  .form-group select {
+    padding: 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-group small {
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: -5px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .radio-group input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+  }
+}
+
+.save-button,
+.calculate-button,
+.clear-button {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
+  width: 100%;
+  min-height: 48px; /* Better touch target */
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .save-button,
+  .calculate-button,
+  .clear-button {
+    padding: 16px 24px;
+    font-size: 1.05rem;
+    min-height: 52px;
+  }
+}
+
+.save-button:hover,
+.calculate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clear-button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.clear-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.result-item {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result-item.earnings {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.result-item.costs {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.result-item.profit.positive {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  border-color: #4caf50;
+}
+
+.result-item.profit.negative {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  border-color: #f44336;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.result-value.positive {
+  color: #2e7d32;
+}
+
+.result-value.negative {
+  color: #c62828;
+}
+
+.result-breakdown {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 8px;
+}
+
+.result-breakdown div {
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .content-wrapper {
+    gap: 20px;
+  }
+
+  .car-profile,
+  .calculator,
+  .results {
+    padding: 20px;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-profile,
+  .calculator,
+  .results {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .car-profile h2,
+  .calculator h2,
+  .results h2 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+
+  .profile-form,
+  .calculator-form {
+    gap: 16px;
+  }
+
+  .form-group {
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group small {
+    font-size: 0.8rem;
+  }
+
+  .radio-group {
+    gap: 12px;
+  }
+
+  .radio-group label {
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+
+  .results-grid {
+    gap: 15px;
+  }
+
+  .result-item {
+    padding: 16px;
+  }
+
+  .result-label {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .result-value {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+  }
+
+  .result-breakdown {
+    font-size: 0.8rem;
+    margin-top: 6px;
+  }
+
+  .result-breakdown div {
+    margin: 3px 0;
+  }
+}
