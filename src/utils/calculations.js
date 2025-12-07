@@ -51,7 +51,8 @@ export const calculateProfit = (fee, tip, miles, profile) => {
     profile.perMileRate
   );
   
-  const wearTear = calculateWearAndTear(miles, profile.wearTearRate || 0);
+  // Hard set wear and tear to 0.10 cents per mile
+  const wearTear = calculateWearAndTear(miles, 0.10);
   
   const totalCosts = gasCost + wearTear;
   const profit = earnings - totalCosts;

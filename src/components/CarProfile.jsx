@@ -5,7 +5,7 @@ const CarProfile = ({ profile, onProfileChange, onSave }) => {
   const [localProfile, setLocalProfile] = useState({
     carType: profile?.carType || CAR_TYPES[0],
     mpg: profile?.mpg || '',
-    wearTearRate: profile?.wearTearRate || '',
+    wearTearRate: profile?.wearTearRate || 0.10, // Hard set to 0.10 cents per mile
     gasPrice: profile?.gasPrice || '',
     gasMethod: profile?.gasMethod || 'mpg',
     perMileRate: profile?.perMileRate || ''
@@ -16,7 +16,7 @@ const CarProfile = ({ profile, onProfileChange, onSave }) => {
       setLocalProfile({
         carType: profile.carType || CAR_TYPES[0],
         mpg: profile.mpg || '',
-        wearTearRate: profile.wearTearRate || '',
+        wearTearRate: profile.wearTearRate || 0.10, // Hard set to 0.10 cents per mile
         gasPrice: profile.gasPrice || '',
         gasMethod: profile.gasMethod || 'mpg',
         perMileRate: profile.perMileRate || ''
@@ -26,12 +26,16 @@ const CarProfile = ({ profile, onProfileChange, onSave }) => {
 
   const handleChange = (field, value) => {
     const updated = { ...localProfile, [field]: value };
+    // Always ensure wearTearRate is 0.10
+    updated.wearTearRate = 0.10;
     setLocalProfile(updated);
     onProfileChange(updated);
   };
 
   const handleSave = () => {
-    onSave(localProfile);
+    // Always ensure wearTearRate is set to 0.10
+    const profileToSave = { ...localProfile, wearTearRate: 0.10 };
+    onSave(profileToSave);
   };
 
   return (
@@ -73,11 +77,12 @@ const CarProfile = ({ profile, onProfileChange, onSave }) => {
             id="wearTearRate"
             min="0"
             step="0.01"
-            value={localProfile.wearTearRate}
-            onChange={(e) => handleChange('wearTearRate', parseFloat(e.target.value) || '')}
-            placeholder="e.g., 0.10"
+            value={0.10}
+            readOnly
+            disabled
+            style={{ backgroundColor: '#f5f5f5', cursor: 'not-allowed' }}
           />
-          <small>Cost per mile for vehicle wear and tear</small>
+          <small>Fixed at $0.10 per mile</small>
         </div>
 
         <div className="form-group">
